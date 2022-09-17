@@ -8,7 +8,7 @@ DB_USER:     str = environ.get("DB_USER")
 DB_PASSWORD: str = environ.get("DB_PASSWORD")
 DB_HOST:     str = environ.get("DB_HOST")
 DB_NAME:     str = environ.get("DB_NAME")
-DB_ECHO:     str = environ.get("DB_ECHO")
+DB_ECHO:    bool = environ.get("DB_ECHO") in ("1", "true", "TRUE")
 
 # Connection to artur_db
 URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
