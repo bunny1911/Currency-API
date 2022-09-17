@@ -7,7 +7,7 @@ from app.db import Rate, session, Currency
 
 
 # Get API key
-API_KEY:     str = environ.get("API_KEY")
+API_KEY: str = environ.get("API_KEY")
 
 
 def get_rates(
