@@ -1,1 +1,1 @@
-from .history import HistorySchema
+from .rate import RateSchema
