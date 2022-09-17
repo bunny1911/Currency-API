@@ -1,0 +1,45 @@
+version: "3.3"
+
+
+volumes:
+  data_volume:
+
+
+services:
+
+  database:
+    image: postgres:14
+
+    restart: always
+
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+
+    volumes:
+      - data_volume:/var/lib/postgresql
+
+    ports:
+      - "15432:5432"
+
+  server:
+    image: app
+
+    environment:
+      - DB_HOST=localhost:15432
+      - DB_USER=postgres
+      - DB_NAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_ECHO=0
+
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+
+    network_mode: host
+    expose:
+      - "5000"
+
+    depends_on:
+      - database
