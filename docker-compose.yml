@@ -32,6 +32,7 @@ services:
       - DB_NAME=postgres
       - DB_PASSWORD=postgres
       - DB_ECHO=0
+      - API_KEY=9X6aBW2OrKb4v659fEel7FkTViMwrLOJ
 
     build:
       context: ./app

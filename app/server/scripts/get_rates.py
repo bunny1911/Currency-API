@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 from urllib.parse import urlencode
 
-from app.db import Rate, session, Currency
+from ..db import Rate, session, Currency
 
 
 # Get API key
@@ -51,7 +51,3 @@ def get_rates(
     session.commit()
 
     return rates
-
-
-# if __name__ == "__main__":
-    # get_rates(currencies=["UAH", "EUR"])

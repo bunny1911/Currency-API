@@ -4,9 +4,9 @@ from alembic import context
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-sys.path.append("../..")
+sys.path.append("../../..")
 
-from app.db.base import Base, URL
+from app.server.db.base import Base, URL
 
 config = context.config
 

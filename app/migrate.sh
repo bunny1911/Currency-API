@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-cd ./db && alembic upgrade head
+cd ./server/db && alembic upgrade head

@@ -1,6 +1,6 @@
 from os import environ
 import requests
-from app.db import session, Currency
+from ..db import session, Currency
 
 
 # Get API key

@@ -7,7 +7,7 @@ Create Date: 2022-09-17 19:06:39.784460
 """
 
 from alembic import op
-from app.scripts import get_currencies
+from app.server.scripts import get_currencies
 
 
 # revision identifiers, used by Alembic.
