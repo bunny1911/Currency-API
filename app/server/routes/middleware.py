@@ -16,3 +16,18 @@ def handle_value_error(error: ValueError) -> tuple[Response, int]:
     """
 
     return jsonify({"error": str(error)}), 400
+
+
+@handler_blueprint.app_errorhandler(Exception)
+def handle_any_error(error: Exception) -> tuple[Response, int]:
+    """
+    Internal errors handler
+
+    Args:
+        error (Exception): Unexpected error
+
+    Returns:
+        Response: Formatted error response
+    """
+
+    return jsonify({"error": str(error)}), 500
