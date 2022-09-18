@@ -3,7 +3,7 @@ from flask_apispec import marshal_with, doc
 
 from ..funcs import get_rate as funcs
 from ..schemas import RateSchema
-from ..cache import cache
+from ..cache import cache, make_key
 
 rates_blueprint = Blueprint("rates", __name__)
 
@@ -14,7 +14,7 @@ rates_blueprint = Blueprint("rates", __name__)
     tags=["Rate"]
 )
 @marshal_with(RateSchema(many=False))
-@cache.cached(timeout=3600, key_prefix="get_rate")  # 1 hour
+@cache.cached(timeout=3600, key_prefix=make_key("get_rate"))  # 1 hour
 def get_rate(
         currency_code: str,
 ):

@@ -1,5 +1,14 @@
 from os import environ
+from typing import Callable
+from flask import request
 from flask_caching import Cache
+
+
+def make_key(prefix: str) -> Callable[[str], str]:
+    def _make_key() -> str:
+        return prefix + request.full_path.split("/")[1].lower()
+
+    return _make_key
 
 
 CACHE_HOST: str = environ.get("CACHE_HOST")

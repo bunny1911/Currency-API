@@ -20,8 +20,8 @@ def get_rates(
 
     validate_currency(base)
 
-    for currency in currencies:
-        validate_currency(currency)
+    for currency_code in currencies:
+        validate_currency(currency_code)
 
     params: str = urlencode({
         "base": base,
@@ -56,7 +56,8 @@ def get_rates(
 
     session.commit()
 
-    # Delete cached value
-    cache.delete("get_rate")
+    # Delete cached values
+    for currency_code in currencies:
+        cache.delete("get_rate_" + currency_code.lower())
 
     return rates
