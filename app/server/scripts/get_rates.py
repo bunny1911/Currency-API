@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 
 from ..db import Rate, session, Currency
 from ..cache import cache
-
+from ..funcs import validate_currency
 
 # Get API key
 API_KEY: str = environ.get("API_KEY")
@@ -17,6 +17,11 @@ def get_rates(
         base: str = "USD"
 ) -> dict[str, float]:
     date = date or datetime.utcnow()
+
+    validate_currency(base)
+
+    for currency in currencies:
+        validate_currency(currency)
 
     params: str = urlencode({
         "base": base,

@@ -1,6 +1,8 @@
+import re
 from datetime import date
 from sqlalchemy import DATE
 from ..db import session, Rate, Currency
+from .validate import validate_currency
 
 
 def get_history(
@@ -10,6 +12,8 @@ def get_history(
 ) -> list[dict]:
     if min_date > max_date:
         raise ValueError
+
+    validate_currency(currency_code)
 
     currency: Currency | None = session.query(Currency).filter(
         Currency.code.ilike(currency_code)
