@@ -4,6 +4,7 @@ from datetime import datetime
 from urllib.parse import urlencode
 
 from ..db import Rate, session, Currency
+from ..cache import cache
 
 
 # Get API key
@@ -49,5 +50,8 @@ def get_rates(
         session.add(rate)
 
     session.commit()
+
+    # Delete cached value
+    cache.delete("get_rate")
 
     return rates

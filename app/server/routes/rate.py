@@ -13,7 +13,7 @@ rates_blueprint = Blueprint("rates", __name__)
     summary="Get current rate for currency"
 )
 @marshal_with(RateSchema(many=False))
-@cache.cached(timeout=3600)  # 1 hour
+@cache.cached(timeout=3600, key_prefix="get_rate")  # 1 hour
 def get_rate(
         currency_code: str,
 ):
