@@ -11,7 +11,8 @@ history_blueprint = Blueprint("history", __name__)
 
 @history_blueprint.get("/<string:currency_code>/history")
 @doc(
-    summary="Get history of rates for currency"
+    summary="Get history of rates for currency",
+    tags=["Rate"]
 )
 @use_kwargs({
     "min_date": fields.Date(

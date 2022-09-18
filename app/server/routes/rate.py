@@ -10,7 +10,8 @@ rates_blueprint = Blueprint("rates", __name__)
 
 @rates_blueprint.get("/<string:currency_code>/rate")
 @doc(
-    summary="Get current rate for currency"
+    summary="Get current rate for currency",
+    tags=["Rate"]
 )
 @marshal_with(RateSchema(many=False))
 @cache.cached(timeout=3600, key_prefix="get_rate")  # 1 hour
