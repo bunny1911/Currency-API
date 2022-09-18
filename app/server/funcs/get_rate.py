@@ -1,4 +1,3 @@
-import re
 from ..db import session, Rate, Currency
 from .validate import validate_currency
 

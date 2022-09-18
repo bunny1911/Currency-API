@@ -5,7 +5,6 @@ from marshmallow import fields
 
 from ..funcs import get_history as funcs
 from ..schemas import RateSchema
-from ..cache import cache
 
 history_blueprint = Blueprint("history", __name__)
 
@@ -32,8 +31,7 @@ def get_history(
         currency_code: str,
         min_date: date,
         max_date: date
-):
-    print("\n\n", type(cache.cache), "\n\n")
+) -> list[dict]:
     return funcs.get_history(
         currency_code=currency_code,
         min_date=min_date,

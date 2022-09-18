@@ -1,4 +1,3 @@
-import re
 from datetime import date
 from sqlalchemy import DATE
 from ..db import session, Rate, Currency
