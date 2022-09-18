@@ -15,9 +15,7 @@ rates_blueprint = Blueprint("rates", __name__)
 )
 @marshal_with(RateSchema(many=False))
 @cache.cached(timeout=3600, key_prefix=make_key("get_rate"))  # 1 hour
-def get_rate(
-        currency_code: str,
-):
+def get_rate(currency_code: str) -> dict:
     return funcs.get_rate(
         currency_code=currency_code
     )

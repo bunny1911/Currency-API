@@ -3,6 +3,14 @@ from flask_apispec import FlaskApiSpec
 
 
 def register_all(app: Flask, doc: FlaskApiSpec) -> None:
+    """
+    Register all routes docs for app
+
+    Args:
+        app (Flask): App object, routes of which you want to register
+        doc (FlaskApiSpec): Doc object for docs registration
+    """
+
     for name, blueprint in app.blueprints.items():
         if name == "flask-apispec":
             # Skip

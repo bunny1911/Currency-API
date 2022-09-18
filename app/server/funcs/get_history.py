@@ -1,5 +1,6 @@
 from datetime import date
 from sqlalchemy import DATE
+
 from ..db import session, Rate, Currency
 from .validate import validate_currency
 
@@ -9,16 +10,34 @@ def get_history(
         min_date: date,
         max_date: date
 ) -> list[dict]:
+    """
+    Get history of rates for specified currency and dates range
+
+    Args:
+        currency_code (str): 3-letters code of currency
+        min_date (date): History range minimal date
+        max_date (date): History range maximal date
+
+    Returns:
+        list[dict]: List of rates for specified period
+
+    Raises:
+        ValueError: if parameters are invalid
+    """
+
+    # Validate parameters
     if min_date > max_date:
         raise ValueError("Invalid date range")
 
     validate_currency(currency_code)
 
+    # Search currency code
     currency: Currency | None = session.query(Currency).filter(
         Currency.code.ilike(currency_code)
     ).first()
 
     if currency is None:
+        # Not found
         raise ValueError("Currency not found")
 
     rates: list[Rate] = session.query(Rate).filter(

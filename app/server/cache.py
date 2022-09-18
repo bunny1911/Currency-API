@@ -5,12 +5,23 @@ from flask_caching import Cache
 
 
 def make_key(prefix: str) -> Callable[[str], str]:
+    """
+    Generate cache key
+
+    Args:
+        prefix (str): Cache key prefix
+
+    Returns:
+        Callable: Prefix generator
+    """
+
     def _make_key() -> str:
         return prefix + request.full_path.split("/")[1].lower()
 
     return _make_key
 
 
+# Get host from variables
 CACHE_HOST: str = environ.get("CACHE_HOST")
 
 if CACHE_HOST is None:
