@@ -15,7 +15,7 @@ def get_currencies() -> dict[str, str]:
         })
 
     if request.status_code != 200:
-        raise ValueError
+        raise ValueError("Failed to get currencies from API")
 
     currencies: dict[str, str] = request.json()["symbols"]
 

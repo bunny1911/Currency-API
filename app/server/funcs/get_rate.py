@@ -11,14 +11,14 @@ def get_rate(currency_code: str) -> dict:
     ).first()
 
     if currency is None:
-        raise ValueError
+        raise ValueError("Currency not found")
 
     rate: Rate | None = session.query(Rate).filter(
         Rate.currency_id == currency.id
     ).order_by(Rate.created_at.desc()).first()
 
     if rate is None:
-        raise ValueError
+        raise ValueError("Rate not found for specified currency")
     return {
         "code": currency_code,
         "value": float(rate.value),

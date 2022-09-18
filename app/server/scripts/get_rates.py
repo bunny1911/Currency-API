@@ -35,7 +35,7 @@ def get_rates(
     )
 
     if request.status_code != 200:
-        raise ValueError
+        raise ValueError("Failed to get rates from API")
 
     rates: dict[str, float] = request.json()["rates"]
 
@@ -45,7 +45,7 @@ def get_rates(
         ).first()
 
         if currency is None:
-            raise ValueError
+            continue
 
         rate: Rate = Rate(
             currency_id=currency.id,

@@ -11,7 +11,7 @@ def get_history(
         max_date: date
 ) -> list[dict]:
     if min_date > max_date:
-        raise ValueError
+        raise ValueError("Invalid date range")
 
     validate_currency(currency_code)
 
@@ -20,7 +20,7 @@ def get_history(
     ).first()
 
     if currency is None:
-        raise ValueError
+        raise ValueError("Currency not found")
 
     rates: list[Rate] = session.query(Rate).filter(
         Rate.created_at.cast(DATE).between(min_date, max_date),
